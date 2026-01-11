@@ -1,9 +1,13 @@
 export type TransactionType = 'Buy' | 'Sell';
+export type Chamber = 'House' | 'Senate';
 export interface Politician {
   id: string;
-  name: string;
-  party: 'Democrat' | 'Republican' | 'Independent';
+  firstName: string;
+  lastName: string;
+  name: string; // Full name for display
+  party: 'Democrat' | 'Republican' | 'Independent' | string;
   state: string;
+  chamber: Chamber;
   avatarUrl: string;
 }
 export interface Issuer {
@@ -13,12 +17,15 @@ export interface Issuer {
 }
 export interface Trade {
   id: string;
-  date: string;
+  txDate: string; // Date of transaction
+  pubDate: string; // Date of publication/filing
   politicianId: string;
   issuerId: string;
   type: TransactionType;
-  amount: string;
-  price: number;
+  amount: string; // Formatted range like "$1,001 - $15,000"
+  sizeLow: number;
+  sizeHigh: number;
+  chamber: Chamber;
 }
 export interface DashboardStats {
   totalVolume: string;
