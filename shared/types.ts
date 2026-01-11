@@ -33,6 +33,7 @@ export interface DashboardStats {
   topSector: string;
   volumeTrend: { date: string; volume: number }[];
   recentTrades: (Trade & { politician: Politician; issuer: Issuer })[];
+  isLiveData: boolean;
 }
 export interface DemoItem {
   id: string;

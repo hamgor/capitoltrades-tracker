@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -10,6 +10,13 @@ type AppLayoutProps = {
   contentClassName?: string;
 };
 export function AppLayout({ children, container = true, className, contentClassName }: AppLayoutProps): JSX.Element {
+  const [isSimulated, setIsSimulated] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/stats').then(res => res.json()).then(({data}) => {
+      setIsSimulated(data?.isLiveData !== true);
+    }).catch(() => setIsSimulated(true));
+  }, []);
   return (
     <SidebarProvider defaultOpen={true}>
       <div className="flex min-h-screen w-full bg-slate-50/30 dark:bg-slate-950/30">
@@ -19,10 +26,12 @@ export function AppLayout({ children, container = true, className, contentClassN
             <SidebarTrigger className="lg:hidden" />
             <div className="flex-1" />
             <div className="flex items-center gap-3">
-              <div className="hidden sm:flex items-center gap-2 px-3 py-1 bg-amber-50 border border-amber-100 dark:bg-amber-950/20 dark:border-amber-900/50 rounded-full">
-                <AlertCircle className="size-3.5 text-amber-600 dark:text-amber-500" />
-                <span className="text-[10px] font-semibold text-amber-700 dark:text-amber-500 uppercase tracking-wide">Simulated Data</span>
-              </div>
+              {isSimulated && (
+                <div className="hidden sm:flex items-center gap-2 px-3 py-1 bg-amber-50 border border-amber-100 dark:bg-amber-950/20 dark:border-amber-900/50 rounded-full">
+                  <AlertCircle className="size-3.5 text-amber-600 dark:text-amber-500" />
+                  <span className="text-[10px] font-semibold text-amber-700 dark:text-amber-500 uppercase tracking-wide">Simulated Data</span>
+                </div>
+              )}
               <ThemeToggle className="static" />
             </div>
           </header>
