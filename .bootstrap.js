@@ -78,7 +78,8 @@ function updateWranglerJsonc() {
 
 function runSetupCommands() {
     const commands = [
-    "bun add framer-motion"
+    "bun add framer-motion",
+    "bun add parquet-wasm"
 ];
     
     if (commands.length === 0) {
