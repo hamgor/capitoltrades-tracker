@@ -1,6 +1,6 @@
 # Congress Trade Pulse
 
-[cloudflarebutton]
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/hamgor/capitoltrades-tracker)
 
 Congress Trade Pulse is a modern full-stack application built on Cloudflare Workers, featuring a React frontend with shadcn/ui components, Tailwind CSS styling, and a Hono backend with Durable Objects for persistent state management. Track congressional trading activity with real-time data, counters, and demo endpoints showcasing Cloudflare's edge capabilities.
 
@@ -108,7 +108,7 @@ Or manually:
 
 Your app will be live at `https://<your-worker>.<your-subdomain>.workers.dev`.
 
-[cloudflarebutton]
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/hamgor/capitoltrades-tracker)
 
 **Custom Domain**: Update `wrangler.jsonc` with `routes` and deploy.
 
